@@ -7,12 +7,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import UI.main;
 
@@ -56,6 +54,7 @@ public class Enclosure {
 				public void actionPerformed(ActionEvent e){
 					box.setVisible(false);
 					meta.setVisible(true);
+					meta.updateUI();
 			}});
 			this.init.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
