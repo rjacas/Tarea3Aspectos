@@ -15,8 +15,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public aspect Demo {
-	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters) ||
-			within(Persistency) || within(SingletonEnforcer) || within(Demo);
+	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters)
+					|| within(Persistency) || within(SingletonEnforcer) || within(Demo)
+					|| within(TamperProof) || within(Recall) || within (HardwareFailManage);
 	
 	pointcut demospin(Reel r): target(r) &&	call(void core.Reel.spin()) 
 							&& withincode(void core.SlotMachine.play());

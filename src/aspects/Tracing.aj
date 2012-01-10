@@ -2,8 +2,9 @@ package aspects;
 import java.io.*;
 
 public aspect Tracing {
-	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters) ||
-						within(Persistency) || within(SingletonEnforcer) || within(Demo);
+	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters)
+						|| within(Persistency) || within(SingletonEnforcer) || within(Demo)
+						|| within(TamperProof) || within(Recall) || within (HardwareFailManage);
 	pointcut myMethod(): !aspects() && (execution(* *(..)) || call(new(..)));
 	
 	before (): myMethod() {

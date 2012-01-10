@@ -5,8 +5,9 @@ import javax.swing.*;
 import java.io.*;
 
 public aspect Debug {
-	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters) ||
-						within(Persistency) || within(SingletonEnforcer) || within(Demo);
+	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters)
+					|| within(Persistency) || within(SingletonEnforcer) || within(Demo)
+					|| within(TamperProof) || within(Recall) || within (HardwareFailManage);
 	pointcut myMethod(): !aspects() && (execution(* *(..)) || call(new(..)));
 	
 	after() throwing(Exception e):myMethod(){ 

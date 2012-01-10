@@ -23,8 +23,9 @@ import UI.ReelPanel;
 import UI.SlotMachineUI;
 
 public aspect Persistency {
-	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters) ||
-		within(Persistency) || within(SingletonEnforcer) || within(Demo);
+	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters)
+					|| within(Persistency) || within(SingletonEnforcer) || within(Demo)
+					|| within(TamperProof) || within(Recall) || within (HardwareFailManage);
 	
 	pointcut lOff(): call(* SlotMachineUI.close());
 	

@@ -7,8 +7,9 @@ public abstract aspect SingletonEnforcer {
 	
 	abstract pointcut callMe();
 
-	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters) ||
-	within(Persistency) || within(SingletonEnforcer) || within(Demo);
+	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters)
+						|| within(Persistency) || within(SingletonEnforcer) || within(Demo)
+						|| within(TamperProof) || within(Recall) || within (HardwareFailManage);
 	
 	declare error: callMe()
 	:"Cannot call new, The Object is a Singleton";
