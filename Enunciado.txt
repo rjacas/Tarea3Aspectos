@@ -1,0 +1,19 @@
+
+Usted ha sido elegido para seguir el desarrollo de la machina de casino 'Super Fruit Machine'. En el estado actual el software todavía funciona mas o menos, y se tiene que seguir haciendo varios arreglos antes que se puede instalar en los casinos. Usted tiene que seguir con el resultado de su trabajo anterior y:
+
+1) Implementar el aspecto Tamper-Proof y la clase Enclosure. Lo ultimo representa la caja fisica de la máquina. Tiene un detector de apertura de la puerta, una lampara para llamar staff que tienen llave especial y una cerradura para esa llave, posiciones ‘Inicial’, ‘Todo bien’ o ‘Payback’. Muestran todo eso (incluso el detector de apertura) en un UI Simple. El aspecto Tamper-Proof se comporta de la manera siguiente:
+- Cuando enclosure se abre la máquina para inmediatamente y ilumina la lampara.
+- Staff tiene que girar la llave hasta ‘Todo Bien’ o ‘Payback’ y despues cerrar la máquina. Si la llave esta en ‘Todo bien’ la siguienta acción es continuar como si no pasó nada, si esta en ‘Payback’ la siguienta accion es pagar el monto de credits y credits=0
+- La siguienta acción se toma después que la llave esta en ‘Inicial’
+
+2) Implementar el aspecto HardwareFailManage. Cuando el Bill acceptor o Coin hopper falla (TAMBIEN en Demo) la máquina para inmediatamente y ilumina la lampara del enclosure. 
+- Staff tiene que girar la llave hasta ‘Todo Bien’ o ‘Payback’ y después cerrar la máquina. Si la llave esta en ‘Todo bien’ la siguienta acción es continuar como si no pasó nada, si esta en ‘Payback’ la siguienta acción es pagar el monto de credits y credits=0
+- La siguienta acción se toma después que la llave esta en ‘Inicial’.
+- Copy-paste is bad for you … 
+
+3) Implementar el aspecto Recall. Ese permite a staff de mostrar las ultimas 4 jugadas en caso de reclamo del usuario. Entonce no se acuerda de lo que pasa en Demo. Se pueden repetir completamente esas jugadas, incluso dinero insertado / retirado. Ojo que NO son jugadas de verdad entonces Meters no cambia y Recall mismo no cambia. Implementan un UI simple que permite lanzar la repetición de las ultimas jugadas y avanzar paso por paso.
+
+En algunas partes de la tarea puede ser que se tiene que cambiar el codigo existente para que los aspectos pueden hacer su trabajo. Usted tiene que documentar estos en un fichero cambios.txt, listando brievemente los cambios (un resumen de cada cambio).
+
+Entrega: entregar en U-Cursos un zip con su proyecto Eclipse, un jar del programa 'ejecutable' y cambios.txt. Tiempo: 4 semanas. Fecha de entrega: Domingo 15 ene, 23:59:59
+
