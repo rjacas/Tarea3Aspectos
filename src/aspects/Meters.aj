@@ -16,7 +16,7 @@ import core.SlotMachine;
 public aspect Meters {
 	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters)
 					|| within(Persistency) || within(SingletonEnforcer) || within(Demo)
-					|| within(TamperProof) || within(Recall) || within (HardwareFailManage);
+					|| within(Recall) || within (HardwareFailManage);
 	
 	pointcut init(): call(* SlotMachineUI.getInstance()) && !aspects();
 	
