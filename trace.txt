@@ -1,0 +1,5 @@
+void core.Tests.main(String[])
+  core.NVRAM()
+  core.NVRAM()
+  java.lang.StringBuilder()
+  java.lang.StringBuilder()
