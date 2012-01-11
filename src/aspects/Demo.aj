@@ -43,11 +43,7 @@ public aspect Demo {
 			reels = new int[5];
 		if(activated){
 			if (r.getEstado() == Reel.BLOQUEADO){
-				try {
-					throw new HardwareException("Reel is blocked");
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
+				throw new HardwareException("Reel is blocked");
 			}
 			if(rc){
 				rc = false;

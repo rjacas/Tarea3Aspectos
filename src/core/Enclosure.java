@@ -19,7 +19,8 @@ public class Enclosure {
 	private String state;
 	private JPanel supameta,meta, light, button;
 	private JLabel bulb;
-	private JButton init,box;
+	public JButton box;
+	private JButton init;
 	private JComboBox values;
 	
 	public Enclosure(){
@@ -78,7 +79,6 @@ public class Enclosure {
 					}
 					if(values.getSelectedItem().equals("Payback")){
 						state = "Payback";
-						
 						trigger();
 					}
 			}});			

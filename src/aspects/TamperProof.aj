@@ -8,7 +8,7 @@ import UI.SlotMachineUI;
 public aspect TamperProof {
 	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters)
 					|| within(Persistency) || within(SingletonEnforcer) || within(Demo)
-					|| within(TamperProof) || within(Recall) || within (HardwareFailManage);
+					|| within(TamperProof) || within(Recall);
 	
 	pointcut init(): call(* SlotMachineUI.getInstance()) && !aspects();
 	
