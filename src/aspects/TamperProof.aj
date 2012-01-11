@@ -15,7 +15,7 @@ public aspect TamperProof {
 	pointcut open(): call(* Enclosure.open());
 	pointcut trigger(): call(* Enclosure.trigger());
 	
-	private Enclosure enc;
+	public static  Enclosure enc;
 	private SlotMachine sm;
 	private SlotMachineUI smui;
 	
