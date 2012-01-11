@@ -35,7 +35,7 @@ public aspect TamperProof {
 	
 	after(): trigger(){ 
 		if(enc.getState().equals("Todo bien")){
-			enc.close();
+			enc.close(); 
 			smui.recover();
 			
 		}
