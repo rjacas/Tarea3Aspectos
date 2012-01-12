@@ -33,11 +33,16 @@ public aspect Recall {
 	pointcut actions(): action1() || action2() || action3() || action4() || action5();
 	
 	private static NVRAM2 saves[];
-	private static int current;
+	private static int current,iterator;
 	private static SlotMachine sm;
 	private static SlotMachineUI smui;
+	private JFrame frame;
+	private JPanel buttons;
+	private JButton inicial, next, stop;
 	
 	after(): init(){ 
+		if(frame == null)
+			frame = newFrame();
 		if(saves == null)
 			saves = new NVRAM2[4];
 		if(sm == null)
@@ -49,82 +54,43 @@ public aspect Recall {
 	before(): actions(){
 		saves[current].save();
 		current=(current+1)%saves.length;
+		iterator=(current+1)%saves.length;
 	}
-	
-	private JFrame frame;
-	private JPanel meta;
 	
 	
 	public JFrame newFrame(){
-		JFrame ret = new JFrame("Demo");
+		JFrame ret = new JFrame("Recall");
 		try {
-			meta = new JPanel(new GridLayout(3,1));
-			activation = new JPanel(new GridBagLayout());
-			money = new JPanel(new GridBagLayout());
 			buttons = new JPanel(new GridBagLayout());
-			activate = new JCheckBox("Activated");
-			actr = new JButton("Use Values");
-			r = new JComboBox[5];
-			for(int i=0;i<5;i++){
-				r[i]=new JComboBox();
-				for (int j = 0; j < 10; j++)
-				      r[i].addItem(j);
-			}
-			mny = new JTextField("",16);
-			mney = new JButton("Insert Coins");
-			rl = new JButton("Reel Excp");
-			coc = new JButton("Coin Hopper Excp");
-			bac = new JButton("Bill Acceptor Excp");
-			ret.add(meta);
-			meta.add(activation);
-			meta.add(money);
-			meta.add(buttons);
-			activation.add(activate);
-			activation.add(actr);
-			for(int i=0;i<5;i++)
-				activation.add(r[i]);
-			money.add(mney);
-			money.add(mny);
-			buttons.add(rl);
-			buttons.add(coc);
-			buttons.add(bac);
-			activate.addActionListener(new ActionListener() {
+			inicial = new JButton("Start");
+			next = new JButton("Next");
+			stop = new JButton("Stop");
+			ret.add(buttons);
+			buttons.add(inicial);
+			buttons.add(next);
+			buttons.add(ret);
+			stop.setEnabled(false);
+			inicial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
-					if(activate.isSelected())
-						activated = true;
-					else
-						activated = false;
+					inicial.setEnabled(false);
+					stop.setEnabled(true);
 			}});
-			actr.addActionListener(new ActionListener() {
+			next.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
-					if(activated){
-						for(int i=0; i<5;i++)
-							reels[i] = ((Integer)r[i].getSelectedItem()).intValue();
-					}
-			}});			
-			mney.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e){
-					if(activated){
-						coins=Integer.parseInt(mny.getText());
-						sm.setCredits(coins);
-						smui.updateCredits();
-						smui.setEnabled(true);
+					if(!inicial.isEnabled()){
+						if(iterator != current){
+							while(saves[iterator] == null)
+								iterator=(iterator+1)%saves.length;
+							saves[iterator].recover(smui);
+							iterator=(iterator+1)%saves.length;
+						}
 					}
 			}});
-			rl.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e){ 
-					rc = true;
-					rl.setEnabled(false);
-			}});
-			coc.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e){ 
-					cc = true;
-					coc.setEnabled(false);
-			}});
-			bac.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e){ 
-					bc = true;
-					bac.setEnabled(false);
+			stop.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e){
+					inicial.setEnabled(true);
+					stop.setEnabled(false);
+					saves[current].recover(smui);
 			}});
 			ret.setSize(450, 240);
 		} catch (Exception e) {
