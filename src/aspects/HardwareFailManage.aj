@@ -2,11 +2,11 @@ package aspects;
 
 public aspect HardwareFailManage {
 	
-	pointcut aspects(): within(Tracing) || within(Debug) || within(Meters)
+	pointcut aspects(): within(Tracing) || within(Meters)
 						|| within(Persistency) || within(SingletonEnforcer)
 						|| within(TamperProof) || within(Recall) || within (HardwareFailManage);
 	
-	pointcut myMethod(): !aspects() && (execution(* *(..)) || call(new(..)));
+	pointcut myMethod(): !aspects() && (call(* *(..)) || execution(* *(..)) || call(new(..)));
 	
 	Object around(): myMethod(){
 		try{

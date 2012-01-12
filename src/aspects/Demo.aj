@@ -19,10 +19,13 @@ public aspect Demo {
 					|| within(Persistency) || within(SingletonEnforcer) || within(Demo)
 					|| within(TamperProof) || within(Recall) || within (HardwareFailManage);
 	
+	pointcut aspects2(): within(Tracing) || within(Debug) || within(Meters)
+					|| within(Persistency) || within(SingletonEnforcer)
+					|| within(TamperProof) || within(Recall) || within (HardwareFailManage);
+	
 	pointcut demospin(Reel r): target(r) &&	call(void core.Reel.spin()) 
 							&& withincode(void core.SlotMachine.play());
 	
-	pointcut reelcrash(): execution(void core.Reel.spin()) && !aspects();
 	pointcut chcrash(): execution(* UI.CoinHopperPanel.getSlotMachineUI()) 
 						&& within(UI.CoinHopperPanel);
 	pointcut bacrash(): execution(* UI.BillAcceptorPanel.getBillAcceptor()) 
@@ -59,16 +62,6 @@ public aspect Demo {
 		}
 		else
 			 proceed(r);
-	}
-	
-	void around() throws HardwareException: reelcrash() {
-		if(activated && rc){
-			rc = false;
-			rl.setEnabled(true);
-			throw new HardwareException("Reel exploded D:!!");
-		}
-		else
-			proceed();
 	}
 	
 	SlotMachineUI around() throws HardwareException: chcrash() {
