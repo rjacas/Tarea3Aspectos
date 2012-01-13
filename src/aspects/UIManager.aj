@@ -28,4 +28,8 @@ public aspect UIManager extends SingletonEnforcer{
 		return SlotMachineUI.myInstance;
 	}
 	
+	public static void SlotMachineUI.setSlotMachineUI(SlotMachineUI a){
+		myInstance = a;
+	}
+	
 }

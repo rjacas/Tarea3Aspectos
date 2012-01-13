@@ -13,7 +13,6 @@ import javax.swing.border.TitledBorder;
 import core.HardwareException;
 import core.IBillAcceptorEventListener;
 import core.ICoinHopperEventListener;
-import core.NVRAM;
 import core.Reel;
 import core.SlotMachine;
 import core.SpinDefaultEvent;

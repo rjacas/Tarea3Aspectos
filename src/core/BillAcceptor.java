@@ -4,7 +4,6 @@ package core;
  * clase que representar la maquina recibidora de dinero.
  */
 public class BillAcceptor {
-	
 	private IBillAcceptorEventListener listener;
 	public int cantidadAceptada;
 	private SlotMachine parent;
